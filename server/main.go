@@ -22,5 +22,5 @@ func main() {
 
 	fmt.Println("Hello world")
 
-	r.Run()
+	r.Run(":8080")
 }

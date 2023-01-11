@@ -35,8 +35,8 @@ func ConnectDB() {
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		config.User, config.Pass, config.Host, config.Port, config.DBName)
-
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	
+  db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println("err")
 	}

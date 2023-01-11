@@ -5,22 +5,17 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/hanifhahn/bakul/model"
-	"github.com/hanifhahn/bakul/routes/produkcontroller"
+	"github.com/hanifhahn/bakul/routes"
 )
 
 func main() {
-	r := gin.Default()
-	r.POST("/produk", produkcontroller.TambahProduk)
-	r.GET("/produk", produkcontroller.LihatProduk)
-	r.PATCH("/produk/:id", produkcontroller.UpdateProduk)
-	r.DELETE("/produk/:id", produkcontroller.HapusProduk)
+	r := gin.New()
+	r.Use(gin.Logger())
 
-	r.PATCH("/archiveProduk/:id", produkcontroller.ArchiveProduk)
-	r.PATCH("/restoreProduk/:id", produkcontroller.RestoreProduk)
-
+	routes.ProdukRoutes(r)
 	model.ConnectDB()
 
 	fmt.Println("Hello world")
 
-	r.Run()
+	r.Run(":8080")
 }

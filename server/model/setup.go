@@ -21,9 +21,8 @@ type Config struct {
 }
 
 func ConnectDB() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal(err)
+	if err := godotenv.Load(".env"); err != nil {
+		log.Fatal("Error read .env file")
 	}
 
 	config := &Config{
@@ -36,11 +35,13 @@ func ConnectDB() {
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local",
 		config.User, config.Pass, config.Host, config.Port, config.DBName)
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	
+  db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println("err")
 	}
 
 	db.AutoMigrate(&Product{})
+
 	DB = db
 }

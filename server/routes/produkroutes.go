@@ -5,7 +5,7 @@ import (
 	"github.com/hanifhahn/bakul/controllers/produkcontroller"
 )
 
-func ProdukRoutes(r *gin.Engine) {
+func ProdukRoutes(r *gin.RouterGroup) {
 	r.POST("/produk", produkcontroller.TambahProduk)
 	r.GET("/produk", produkcontroller.LihatProduk)
 	r.PATCH("/produk/:id", produkcontroller.UpdateProduk)

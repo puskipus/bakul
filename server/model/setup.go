@@ -41,7 +41,7 @@ func ConnectDB() {
 		fmt.Println("err")
 	}
 
-	db.AutoMigrate(&Product{})
+	db.AutoMigrate(&Product{}, &User{})
 
 	DB = db
 }
